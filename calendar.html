@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Our Special Calendar 🍂</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+.calendar-container{
+
+width:90%;
+max-width:500px;
+background:rgba(255,240,210,.95);
+border-radius:25px;
+padding:25px;
+box-shadow:0 20px 40px rgba(0,0,0,.3);
+z-index:2;
+
+}
+
+.month-header{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+
+}
+
+.month-title{
+
+font-family:'Cormorant Garamond',serif;
+font-size:2rem;
+color:#6b3520;
+
+}
+
+.calendar{
+
+display:grid;
+grid-template-columns:repeat(7,1fr);
+gap:8px;
+
+}
+
+.day-name{
+
+font-weight:bold;
+color:#8b4b2a;
+padding:8px;
+
+}
+
+.day{
+
+background:#fff7eb;
+padding:12px;
+border-radius:12px;
+text-align:center;
+min-height:55px;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+color:#5c2d19;
+
+}
+
+.day.empty{
+
+background:transparent;
+
+}
+
+.special{
+
+background:#ffe4c7;
+cursor:pointer;
+transition:.3s;
+
+}
+
+.special:hover{
+
+transform:scale(1.08);
+
+}
+
+.icon{
+
+font-size:1.2rem;
+
+}
+
+.bottom-buttons{
+
+margin-top:25px;
+display:flex;
+justify-content:center;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="leaf">🍂</div>
+<div class="leaf">🍁</div>
+<div class="leaf">🍂</div>
+<div class="leaf">🍁</div>
+<div class="leaf">🍂</div>
+
+<div class="calendar-container">
+
+<div class="month-header">
+
+<button class="button" onclick="previousMonth()">←</button>
+
+<div class="month-title" id="title"></div>
+
+<button class="button" onclick="nextMonth()">→</button>
+
+</div>
+
+<div class="calendar" id="calendar"></div>
+
+<div class="bottom-buttons">
+
+<a href="page3.html" class="button">
+🏡 Back
+</a>
+
+</div>
+
+</div>
+
+<script>
+
+const monthNames=[
+"January","February","March","April","May","June",
+"July","August","September","October","November","December"
+];
+
+const dayNames=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+
+let month=new Date().getMonth();
+let year=new Date().getFullYear();
+
+const specialDates={
+
+"1-2":{
+icon:"🎂",
+page:"birthday-you.html"
+},
+
+"12-4":{
+icon:"❤️",
+page:"anniversary.html"
+},
+
+"12-10":{
+icon:"🍂",
+page:"sixmonths.html"
+},
+
+"7-12":{
+icon:"🎁",
+page:"birthday-him.html"
+}
+
+};
+
+function drawCalendar(){
+
+const calendar=document.getElementById("calendar");
+
+calendar.innerHTML="";
+
+document.getElementById("title").innerHTML=
+monthNames[month]+" "+year;
+
+dayNames.forEach(name=>{
+
+let d=document.createElement("div");
+d.className="day-name";
+d.innerHTML=name;
+calendar.appendChild(d);
+
+});
+
+let first=new Date(year,month,1);
+
+let start=(first.getDay()+6)%7;
+
+for(let i=0;i<start;i++){
+
+let empty=document.createElement("div");
+empty.className="day empty";
+calendar.appendChild(empty);
+
+}
+
+let totalDays=new Date(year,month+1,0).getDate();
+
+for(let day=1;day<=totalDays;day++){
+
+let box=document.createElement("div");
+
+let key=day+"-"+(month+1);
+
+if(specialDates[key]){
+
+box.className="day special";
+
+box.innerHTML=
+
+"<div class='icon'>"+
+specialDates[key].icon+
+"</div><div>"+day+"</div>";
+
+box.onclick=()=>{
+
+window.location=specialDates[key].page;
+
+};
+
+}else{
+
+box.className="day";
+
+box.innerHTML=day;
+
+}
+
+calendar.appendChild(box);
+
+}
+
+}
+
+function previousMonth(){
+
+if(year==2025 && month==0)return;
+
+month--;
+
+if(month<0){
+
+month=11;
+year--;
+
+}
+
+drawCalendar();
+
+}
+
+function nextMonth(){
+
+if(year==2027 && month==11)return;
+
+month++;
+
+if(month>11){
+
+month=0;
+year++;
+
+}
+
+drawCalendar();
+
+}
+
+drawCalendar();
+
+</script>
+
+</body>
+
+</html>
