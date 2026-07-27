@@ -1,8 +1,6 @@
 <script>
 
-
-const monthNames=[
-
+const monthNames = [
 "January",
 "February",
 "March",
@@ -15,12 +13,10 @@ const monthNames=[
 "October",
 "November",
 "December"
-
 ];
 
 
-const dayNames=[
-
+const dayNames = [
 "Mon",
 "Tue",
 "Wed",
@@ -28,11 +24,10 @@ const dayNames=[
 "Fri",
 "Sat",
 "Sun"
-
 ];
 
 
-// Start from current month
+// Current month start
 
 let today = new Date();
 
@@ -44,212 +39,151 @@ let year = today.getFullYear();
 // Calendar limits
 
 const startMonth = month;
-
 const startYear = year;
 
 const endMonth = 11;
-
 const endYear = 2027;
 
 
 
-// Recurring and special dates
+// Events
 
-const yearlyDates = {
+const events = [
 
-
-"birthday-you":{
-
+{
 month:2,
 day:1,
 icon:"🎂",
-page:"birthday-you.html"
-
+page:"birthday-you.html",
+repeat:true
 },
 
-
-"anniversary":{
-
+{
 month:4,
 day:12,
 icon:"❤️",
-page:"anniversary.html"
-
+page:"anniversary.html",
+repeat:true
 },
 
-
-"birthday-him":{
-
-month:12,
-day:7,
-icon:"🎁",
-page:"birthday-him.html"
-
-}
-
-
-};
-
-
-
-// One-time dates
-
-const specialDates = {
-
-
-"sixmonths":{
-
-year:2026,
+{
 month:10,
 day:12,
 icon:"🍂",
-page:"sixmonths.html"
+page:"sixmonths.html",
+repeat:false,
+year:2026
+},
 
+{
+month:12,
+day:7,
+icon:"🎁",
+page:"birthday-him.html",
+repeat:true
 }
 
-
-};
-
-
+];
 
 
 
 function drawCalendar(){
 
 
-const calendar=document.getElementById("calendar");
+const calendar = document.getElementById("calendar");
+
+calendar.innerHTML = "";
 
 
-calendar.innerHTML="";
-
-
-document.getElementById("title").innerHTML=
-
-monthNames[month]+" "+year;
-
+document.getElementById("title").innerHTML =
+monthNames[month] + " " + year;
 
 
 
-dayNames.forEach(name=>{
+dayNames.forEach(name => {
 
+let d = document.createElement("div");
 
-let d=document.createElement("div");
+d.className = "day-name";
 
-d.className="day-name";
-
-d.innerHTML=name;
+d.innerHTML = name;
 
 calendar.appendChild(d);
+
+});
+
+
+
+let first = new Date(year, month, 1);
+
+let start = (first.getDay()+6)%7;
+
+
+
+for(let i=0; i<start; i++){
+
+let empty = document.createElement("div");
+
+empty.className="day empty";
+
+calendar.appendChild(empty);
+
+}
+
+
+
+let totalDays = new Date(year, month+1, 0).getDate();
+
+
+
+for(let day=1; day<=totalDays; day++){
+
+
+let box = document.createElement("div");
+
+let foundEvent = null;
+
+
+
+events.forEach(event => {
+
+
+if(
+event.day === day &&
+event.month === month+1 &&
+(
+event.repeat === true ||
+event.year === year
+)
+){
+
+foundEvent = event;
+
+}
 
 
 });
 
 
 
-
-let first=new Date(year,month,1);
-
-
-let start=(first.getDay()+6)%7;
-
-
-
-for(let i=0;i<start;i++){
-
-
-let empty=document.createElement("div");
-
-empty.className="day empty";
-
-calendar.appendChild(empty);
-
-
-}
-
-
-
-
-
-let totalDays=new Date(year,month+1,0).getDate();
-
-
-
-
-
-for(let day=1;day<=totalDays;day++){
-
-
-let box=document.createElement("div");
-
-
-let event=null;
-
-
-
-// Check yearly events
-
-for(let item in yearlyDates){
-
-
-let date=yearlyDates[item];
-
-
-if(
-date.month === month+1 &&
-date.day === day
-){
-
-event=date;
-
-}
-
-
-}
-
-
-
-
-// Check one-time events
-
-for(let item in specialDates){
-
-
-let date=specialDates[item];
-
-
-if(
-date.year === year &&
-date.month === month+1 &&
-date.day === day
-){
-
-event=date;
-
-}
-
-
-}
-
-
-
-
-if(event){
+if(foundEvent){
 
 
 box.className="day special";
 
 
-box.innerHTML=
-
+box.innerHTML =
 "<div class='icon'>"+
-event.icon+
-"</div><div>"+day+"</div>";
+foundEvent.icon+
+"</div><div>"+
+day+
+"</div>";
 
 
 
-box.onclick=()=>{
+box.onclick=function(){
 
-window.location=event.page;
+window.location = foundEvent.page;
 
 };
 
@@ -261,11 +195,10 @@ else{
 
 box.className="day";
 
-box.innerHTML=day;
+box.innerHTML = day;
 
 
 }
-
 
 
 calendar.appendChild(box);
@@ -280,13 +213,12 @@ calendar.appendChild(box);
 
 
 
-
 function previousMonth(){
 
 
 if(
-year===startYear &&
-month===startMonth
+year === startYear &&
+month === startMonth
 ){
 
 return;
@@ -294,27 +226,21 @@ return;
 }
 
 
-
 month--;
 
 
+if(month < 0){
 
-if(month<0){
-
-
-month=11;
+month = 11;
 
 year--;
-
 
 }
 
 
 drawCalendar();
 
-
 }
-
 
 
 
@@ -324,8 +250,8 @@ function nextMonth(){
 
 
 if(
-year===endYear &&
-month===endMonth
+year === endYear &&
+month === endMonth
 ){
 
 return;
@@ -333,27 +259,21 @@ return;
 }
 
 
-
 month++;
 
 
+if(month > 11){
 
-if(month>11){
-
-
-month=0;
+month = 0;
 
 year++;
-
 
 }
 
 
 drawCalendar();
 
-
 }
-
 
 
 
