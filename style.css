@@ -1,0 +1,96 @@
+/* 🍂 Autumn Theme - Shared Website Style 🍂 */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Quicksand:wght@400;600&display=swap');
+
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(
+        to bottom,
+        #f8dfb8,
+        #d98245,
+        #7b4328
+    );
+    font-family: 'Quicksand', sans-serif;
+    color: #fff8ed;
+}
+
+
+/* Main content box */
+.container {
+    text-align: center;
+    padding: 30px 20px;
+    width: 90%;
+    max-width: 450px;
+    margin: auto;
+}
+
+
+/* Headings */
+h1, h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    text-shadow: 2px 3px 8px rgba(0,0,0,0.25);
+}
+
+
+/* Paragraph text */
+p {
+    line-height: 1.7;
+    font-size: 1.1rem;
+}
+
+
+/* Autumn buttons */
+.button {
+    display: block;
+    margin: 18px auto;
+    padding: 16px 25px;
+    background: #8b542f;
+    color: #fff8ed;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 1.15rem;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+    transition: 0.3s;
+}
+
+
+.button:hover {
+    background: #a9683a;
+    transform: scale(1.05);
+}
+
+
+/* Scrapbook style cards */
+.card {
+    background: #fff3df;
+    color: #6b3e26;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 18px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+
+/* Decorative leaves */
+.leaf {
+    position: fixed;
+    font-size: 2rem;
+    animation: fall 12s linear infinite;
+    opacity: 0.8;
+}
+
+
+@keyframes fall {
+
+    from {
+        transform: translateY(-100px) rotate(0deg);
+    }
+
+    to {
+        transform: translateY(110vh) rotate(360deg);
+    }
+
+}
