@@ -542,3 +542,18 @@ p {
     #c7773d;
 
 }
+
+.navigation {
+
+    margin-top: 15px;
+
+}
+
+
+.navigation .button {
+
+    font-size: 1rem;
+
+    padding: 12px 20px;
+
+}
