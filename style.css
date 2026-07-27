@@ -1,96 +1,246 @@
-/* 🍂 Autumn Theme - Shared Website Style 🍂 */
+/* 🍂🍁 OVERDRIVE AUTUMN THEME 🍁🍂 */
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Quicksand:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Quicksand:wght@400;600&display=swap');
 
 
 body {
     margin: 0;
     min-height: 100vh;
-    background: linear-gradient(
-        to bottom,
-        #f8dfb8,
-        #d98245,
-        #7b4328
-    );
+
+    background:
+        radial-gradient(circle at top, rgba(255,220,150,0.35), transparent 40%),
+        linear-gradient(
+            to bottom,
+            #f7dfb5,
+            #d8894c,
+            #8b4528
+        );
+
     font-family: 'Quicksand', sans-serif;
-    color: #fff8ed;
+    color: #fff6e8;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow-x: hidden;
 }
 
 
-/* Main content box */
+/* 🍂 floating autumn decorations */
+
+.leaf {
+    position: fixed;
+    top: -50px;
+    font-size: 2.5rem;
+    animation: falling 10s linear infinite;
+    opacity: 0.85;
+}
+
+
+.leaf:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.leaf:nth-child(2) {
+    left: 50%;
+    animation-delay: 3s;
+}
+
+.leaf:nth-child(3) {
+    left: 80%;
+    animation-delay: 6s;
+}
+
+
+@keyframes falling {
+
+    0% {
+        transform:
+        translateY(-100px)
+        rotate(0deg);
+    }
+
+    100% {
+        transform:
+        translateY(110vh)
+        rotate(360deg);
+    }
+}
+
+
+
+/* Main content */
+
 .container {
+
+    background:
+    rgba(255, 243, 220, 0.18);
+
+    backdrop-filter: blur(8px);
+
+    padding: 35px 25px;
+
+    width: 85%;
+    max-width: 430px;
+
     text-align: center;
-    padding: 30px 20px;
-    width: 90%;
-    max-width: 450px;
-    margin: auto;
+
+    border-radius: 25px;
+
+    box-shadow:
+    0 15px 35px rgba(70,30,10,0.35);
+
+    border:
+    2px solid rgba(255,220,150,0.5);
 }
 
 
-/* Headings */
-h1, h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 700;
-    text-shadow: 2px 3px 8px rgba(0,0,0,0.25);
+
+/* Titles */
+
+h1 {
+
+    font-family:
+    'Cormorant Garamond',
+    serif;
+
+    font-size:
+    clamp(2.8rem, 9vw, 4rem);
+
+    color:
+    #fff2d6;
+
+    text-shadow:
+
+    3px 3px 10px
+    rgba(70,30,10,0.6);
+
 }
 
 
-/* Paragraph text */
+
+/* Text */
+
 p {
-    line-height: 1.7;
-    font-size: 1.1rem;
+
+    font-size:
+    1.15rem;
+
+    line-height:
+    1.8;
+
+    color:
+    #fff8ed;
+
 }
 
 
-/* Autumn buttons */
+
+/* Buttons */
+
 .button {
-    display: block;
-    margin: 18px auto;
-    padding: 16px 25px;
-    background: #8b542f;
-    color: #fff8ed;
-    text-decoration: none;
-    border-radius: 30px;
-    font-size: 1.15rem;
-    box-shadow: 0 6px 12px rgba(0,0,0,0.25);
-    transition: 0.3s;
+
+    display:
+    block;
+
+    margin:
+    20px auto;
+
+    padding:
+    17px 25px;
+
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #a85d32,
+        #71351f
+    );
+
+
+    color:
+    #fff3dc;
+
+
+    text-decoration:
+    none;
+
+
+    border-radius:
+    35px;
+
+
+    font-size:
+    1.15rem;
+
+
+    font-weight:
+    600;
+
+
+    box-shadow:
+
+    0 8px 15px
+    rgba(60,25,10,0.35);
+
+
+    border:
+    1px solid
+    rgba(255,220,150,0.5);
+
+
+    transition:
+    0.3s;
+
 }
 
 
 .button:hover {
-    background: #a9683a;
-    transform: scale(1.05);
+
+    transform:
+    scale(1.08);
+
+    background:
+    linear-gradient(
+        135deg,
+        #c7773d,
+        #8a4426
+    );
+
 }
 
 
-/* Scrapbook style cards */
+
+/* Scrapbook cards for future pages */
+
 .card {
-    background: #fff3df;
-    color: #6b3e26;
-    padding: 20px;
-    margin: 20px 0;
-    border-radius: 18px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-}
+
+    background:
+    #fff1d6;
+
+    color:
+    #6b3520;
+
+    padding:
+    20px;
+
+    margin:
+    20px 0;
+
+    border-radius:
+    18px;
 
 
-/* Decorative leaves */
-.leaf {
-    position: fixed;
-    font-size: 2rem;
-    animation: fall 12s linear infinite;
-    opacity: 0.8;
-}
+    box-shadow:
+    0 10px 20px
+    rgba(50,20,5,0.25);
 
 
-@keyframes fall {
-
-    from {
-        transform: translateY(-100px) rotate(0deg);
-    }
-
-    to {
-        transform: translateY(110vh) rotate(360deg);
-    }
+    border-left:
+    8px solid
+    #c7773d;
 
 }
