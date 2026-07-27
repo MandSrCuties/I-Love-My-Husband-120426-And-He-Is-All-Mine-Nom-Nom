@@ -6,21 +6,493 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Test Calendar</title>
+<title>Our Special Calendar 🍂</title>
 
 <link rel="stylesheet" href="style.css">
 
+<style>
+
+.calendar-container {
+
+width:90%;
+max-width:500px;
+background:rgba(255,240,210,.95);
+border-radius:25px;
+padding:25px;
+box-shadow:0 20px 40px rgba(0,0,0,.3);
+z-index:2;
+
+}
+
+
+.month-header {
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+
+}
+
+
+.month-title {
+
+font-family:'Cormorant Garamond',serif;
+font-size:2rem;
+color:#6b3520;
+
+}
+
+
+.calendar {
+
+display:grid;
+grid-template-columns:repeat(7,1fr);
+gap:8px;
+
+}
+
+
+.day-name {
+
+font-weight:bold;
+color:#8b4b2a;
+padding:8px;
+text-align:center;
+
+}
+
+
+.day {
+
+background:#fff7eb;
+padding:12px;
+border-radius:12px;
+text-align:center;
+min-height:55px;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+color:#5c2d19;
+
+}
+
+
+.day.empty {
+
+background:transparent;
+
+}
+
+
+.special {
+
+background:#ffe4c7;
+cursor:pointer;
+transition:.3s;
+
+}
+
+
+.special:hover {
+
+transform:scale(1.08);
+
+}
+
+
+.icon {
+
+font-size:1.2rem;
+
+}
+
+
+.bottom-buttons {
+
+margin-top:25px;
+display:flex;
+justify-content:center;
+
+}
+
+</style>
+
 </head>
+
 
 <body>
 
-<div class="container">
 
-<h1>Calendar Test 🍂</h1>
+<div class="leaf">🍂</div>
+<div class="leaf">🍁</div>
+<div class="leaf">🍂</div>
+<div class="leaf">🍁</div>
+<div class="leaf">🍂</div>
 
-<p>If you can see this, the page is loading.</p>
+
+<div class="calendar-container">
+
+
+<div class="month-header">
+
+<button class="button" onclick="previousMonth()">
+←
+</button>
+
+
+<div class="month-title" id="title"></div>
+
+
+<button class="button" onclick="nextMonth()">
+→
+</button>
+
 
 </div>
+
+
+<div class="calendar" id="calendar"></div>
+
+
+<div class="bottom-buttons">
+
+<a href="page3.html" class="button">
+🏡 Back
+</a>
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+
+const monthNames = [
+
+"January",
+"February",
+"March",
+"April",
+"May",
+"June",
+"July",
+"August",
+"September",
+"October",
+"November",
+"December"
+
+];
+
+
+const dayNames = [
+
+"Mon",
+"Tue",
+"Wed",
+"Thu",
+"Fri",
+"Sat",
+"Sun"
+
+];
+
+
+
+// Start calendar from today
+
+let today = new Date();
+
+let month = today.getMonth();
+
+let year = today.getFullYear();
+
+
+
+// Limits
+
+const startMonth = month;
+
+const startYear = year;
+
+const endMonth = 11;
+
+const endYear = 2027;
+
+
+
+// Special events
+
+const events = [
+
+
+{
+month:2,
+day:1,
+icon:"🎂",
+page:"birthday-you.html",
+repeat:true
+},
+
+
+{
+month:4,
+day:12,
+icon:"❤️",
+page:"anniversary.html",
+repeat:true
+},
+
+
+{
+month:10,
+day:12,
+icon:"🍂",
+page:"sixmonths.html",
+repeat:false,
+year:2026
+},
+
+
+{
+month:12,
+day:7,
+icon:"🎁",
+page:"birthday-him.html",
+repeat:true
+}
+
+
+];
+
+
+
+
+
+function drawCalendar(){
+
+
+const calendar=document.getElementById("calendar");
+
+calendar.innerHTML="";
+
+
+document.getElementById("title").innerHTML =
+monthNames[month]+" "+year;
+
+
+
+dayNames.forEach(day=>{
+
+
+let box=document.createElement("div");
+
+box.className="day-name";
+
+box.innerHTML=day;
+
+calendar.appendChild(box);
+
+
+});
+
+
+
+let firstDay = new Date(year,month,1);
+
+let start = (firstDay.getDay()+6)%7;
+
+
+
+for(let i=0;i<start;i++){
+
+
+let empty=document.createElement("div");
+
+empty.className="day empty";
+
+calendar.appendChild(empty);
+
+
+}
+
+
+
+
+let days = new Date(year,month+1,0).getDate();
+
+
+
+for(let day=1;day<=days;day++){
+
+
+let box=document.createElement("div");
+
+
+let eventFound=null;
+
+
+
+events.forEach(event=>{
+
+
+if(
+
+event.day===day &&
+
+event.month===month+1 &&
+
+(
+
+event.repeat===true ||
+
+event.year===year
+
+)
+
+){
+
+eventFound=event;
+
+}
+
+
+});
+
+
+
+
+if(eventFound){
+
+
+box.className="day special";
+
+
+box.innerHTML =
+
+"<div class='icon'>"+
+eventFound.icon+
+"</div>"+
+"<div>"+day+"</div>";
+
+
+
+box.onclick=function(){
+
+window.location=eventFound.page;
+
+};
+
+
+}
+
+else{
+
+
+box.className="day";
+
+box.innerHTML=day;
+
+
+}
+
+
+
+calendar.appendChild(box);
+
+
+}
+
+
+
+}
+
+
+
+
+function previousMonth(){
+
+
+if(
+year===startYear &&
+month===startMonth
+){
+
+return;
+
+}
+
+
+
+month--;
+
+
+
+if(month<0){
+
+month=11;
+
+year--;
+
+}
+
+
+
+drawCalendar();
+
+
+}
+
+
+
+
+function nextMonth(){
+
+
+if(
+year===endYear &&
+month===endMonth
+){
+
+return;
+
+}
+
+
+
+month++;
+
+
+
+if(month>11){
+
+month=0;
+
+year++;
+
+}
+
+
+
+drawCalendar();
+
+
+}
+
+
+
+
+
+drawCalendar();
+
+
+</script>
+
 
 </body>
 
