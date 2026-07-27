@@ -110,6 +110,7 @@ justify-content:center;
 
 </head>
 
+
 <body>
 
 <div class="leaf">🍂</div>
@@ -118,7 +119,9 @@ justify-content:center;
 <div class="leaf">🍁</div>
 <div class="leaf">🍂</div>
 
+
 <div class="calendar-container">
+
 
 <div class="month-header">
 
@@ -130,7 +133,9 @@ justify-content:center;
 
 </div>
 
+
 <div class="calendar" id="calendar"></div>
+
 
 <div class="bottom-buttons">
 
@@ -140,149 +145,300 @@ justify-content:center;
 
 </div>
 
+
 </div>
+
 
 <script>
 
+
 const monthNames=[
-"January","February","March","April","May","June",
-"July","August","September","October","November","December"
+
+"January",
+"February",
+"March",
+"April",
+"May",
+"June",
+"July",
+"August",
+"September",
+"October",
+"November",
+"December"
+
 ];
 
-const dayNames=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
 
-let month=new Date().getMonth();
-let year=new Date().getFullYear();
+const dayNames=[
+
+"Mon",
+"Tue",
+"Wed",
+"Thu",
+"Fri",
+"Sat",
+"Sun"
+
+];
+
+
+// Start from current month
+
+let today = new Date();
+
+let month = today.getMonth();
+
+let year = today.getFullYear();
+
+
+// Limits
+
+const startMonth = month;
+
+const startYear = year;
+
+const endMonth = 11;
+
+const endYear = 2027;
+
+
+
+// One-off special dates
 
 const specialDates={
 
-"1-2":{
+
+// CHANGE YEARS HERE IF NEEDED
+
+"2026-2-1":{
+
 icon:"🎂",
+
 page:"birthday-you.html"
+
 },
 
-"12-4":{
+
+"2026-4-12":{
+
 icon:"❤️",
+
 page:"anniversary.html"
+
 },
 
-"12-10":{
+
+"2026-10-12":{
+
 icon:"🍂",
+
 page:"sixmonths.html"
+
 },
 
-"7-12":{
+
+"2026-12-7":{
+
 icon:"🎁",
+
 page:"birthday-him.html"
+
 }
 
+
 };
+
+
 
 function drawCalendar(){
 
+
 const calendar=document.getElementById("calendar");
+
 
 calendar.innerHTML="";
 
+
 document.getElementById("title").innerHTML=
+
 monthNames[month]+" "+year;
+
+
 
 dayNames.forEach(name=>{
 
+
 let d=document.createElement("div");
+
 d.className="day-name";
+
 d.innerHTML=name;
+
 calendar.appendChild(d);
+
 
 });
 
+
+
 let first=new Date(year,month,1);
+
 
 let start=(first.getDay()+6)%7;
 
+
+
 for(let i=0;i<start;i++){
 
+
 let empty=document.createElement("div");
+
 empty.className="day empty";
+
 calendar.appendChild(empty);
+
 
 }
 
+
+
 let totalDays=new Date(year,month+1,0).getDate();
+
+
 
 for(let day=1;day<=totalDays;day++){
 
+
 let box=document.createElement("div");
 
-let key=day+"-"+(month+1);
+
+let key=year+"-"+(month+1)+"-"+day;
+
+
 
 if(specialDates[key]){
 
+
 box.className="day special";
+
 
 box.innerHTML=
 
+
 "<div class='icon'>"+
+
 specialDates[key].icon+
+
 "</div><div>"+day+"</div>";
+
+
 
 box.onclick=()=>{
 
+
 window.location=specialDates[key].page;
+
 
 };
 
-}else{
+
+}
+
+else{
+
 
 box.className="day";
 
 box.innerHTML=day;
 
+
 }
+
+
 
 calendar.appendChild(box);
 
-}
 
 }
+
+
+}
+
+
+
 
 function previousMonth(){
 
-if(year==2025 && month==0)return;
+
+if(year===startYear && month===startMonth){
+
+return;
+
+}
+
+
 
 month--;
 
+
 if(month<0){
 
+
 month=11;
+
 year--;
 
+
 }
+
 
 drawCalendar();
 
+
 }
+
+
+
 
 function nextMonth(){
 
-if(year==2027 && month==11)return;
+
+if(year===endYear && month===endMonth){
+
+return;
+
+}
+
+
 
 month++;
 
+
 if(month>11){
 
+
 month=0;
+
 year++;
 
-}
-
-drawCalendar();
 
 }
 
+
 drawCalendar();
+
+
+}
+
+
+
+drawCalendar();
+
+
 
 </script>
+
 
 </body>
 
