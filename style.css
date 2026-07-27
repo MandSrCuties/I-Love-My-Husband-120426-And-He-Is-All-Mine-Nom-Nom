@@ -1,147 +1,302 @@
-/* 🍂🍁 AUTUMN LEAF STORM 🍁🍂 */
+/* 🍂🕯️ COSY AUTUMN LOVE BOOK THEME 🕯️🍂 */
 
-.leaf {
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Quicksand:wght@400;600&display=swap');
+
+
+/* 🌅 Background */
+
+body {
+
+    margin: 0;
+
+    min-height: 100vh;
+
+    background:
+
+        radial-gradient(
+            circle at top,
+            rgba(255,220,140,0.45),
+            transparent 35%
+        ),
+
+        linear-gradient(
+            to bottom,
+            #f2d19b,
+            #c8753d,
+            #5c2d1c
+        );
+
+
+    font-family:
+    'Quicksand',
+    sans-serif;
+
+
+    display:
+    flex;
+
+
+    justify-content:
+    center;
+
+
+    align-items:
+    center;
+
+
+    overflow-x:
+    hidden;
+
+
+    color:
+    #fff4dc;
+
+}
+
+
+/* 🕯️ Candle glow */
+
+body::before {
+
+    content: "";
 
     position: fixed;
 
-    top: -100px;
+    width: 350px;
 
-    font-size: 2rem;
+    height: 350px;
 
-    opacity: 0.75;
 
-    z-index: 1;
+    background:
 
-    pointer-events: none;
+    radial-gradient(
+        circle,
+        rgba(255,220,120,0.45),
+        transparent 70%
+    );
 
-    animation-name: fall;
 
-    animation-timing-function: linear;
+    top: 5%;
 
-    animation-iteration-count: infinite;
+    left: 50%;
+
+
+    transform:
+    translateX(-50%);
+
+
+    filter:
+    blur(20px);
+
+
+    animation:
+    glow 4s infinite ease-in-out;
+
 
 }
 
 
-/* lots of different leaf paths */
+@keyframes glow {
 
-.leaf:nth-child(1) {
-    left: 2%;
-    animation-duration: 10s;
-}
+    0%,100% {
 
-.leaf:nth-child(2) {
-    left: 8%;
-    animation-duration: 16s;
-    animation-delay: 3s;
-}
-
-.leaf:nth-child(3) {
-    left: 15%;
-    animation-duration: 12s;
-    animation-delay: 6s;
-}
-
-.leaf:nth-child(4) {
-    left: 22%;
-    animation-duration: 18s;
-    animation-delay: 1s;
-}
-
-.leaf:nth-child(5) {
-    left: 30%;
-    animation-duration: 11s;
-    animation-delay: 4s;
-}
-
-.leaf:nth-child(6) {
-    left: 38%;
-    animation-duration: 15s;
-    animation-delay: 8s;
-}
-
-.leaf:nth-child(7) {
-    left: 45%;
-    animation-duration: 13s;
-    animation-delay: 2s;
-}
-
-.leaf:nth-child(8) {
-    left: 52%;
-    animation-duration: 19s;
-    animation-delay: 5s;
-}
-
-.leaf:nth-child(9) {
-    left: 60%;
-    animation-duration: 14s;
-    animation-delay: 7s;
-}
-
-.leaf:nth-child(10) {
-    left: 68%;
-    animation-duration: 17s;
-    animation-delay: 1s;
-}
-
-.leaf:nth-child(11) {
-    left: 75%;
-    animation-duration: 12s;
-    animation-delay: 6s;
-}
-
-.leaf:nth-child(12) {
-    left: 83%;
-    animation-duration: 18s;
-    animation-delay: 3s;
-}
-
-.leaf:nth-child(13) {
-    left: 92%;
-    animation-duration: 11s;
-    animation-delay: 9s;
-}
-
-
-
-@keyframes fall {
-
-    0% {
-
-        transform:
-        translateY(-120px)
-        translateX(0)
-        rotate(0deg);
-
-    }
-
-
-    25% {
-
-        transform:
-        translateY(25vh)
-        translateX(40px)
-        rotate(180deg);
+        opacity:
+        0.6;
 
     }
 
 
     50% {
 
-        transform:
-        translateY(55vh)
-        translateX(-40px)
-        rotate(360deg);
+        opacity:
+        1;
 
     }
 
+}
 
-    75% {
+
+
+/* 🍂 Falling leaves */
+
+.leaf {
+
+    position:
+    fixed;
+
+
+    top:
+    -80px;
+
+
+    font-size:
+    2.5rem;
+
+
+    opacity:
+    0.8;
+
+
+    z-index:
+    1;
+
+
+    animation:
+    fall 14s linear infinite;
+
+}
+
+
+
+/* leaf positions */
+
+.leaf:nth-child(1) {
+
+    left:
+    5%;
+
+    animation-duration:
+    11s;
+
+}
+
+
+.leaf:nth-child(2) {
+
+    left:
+    15%;
+
+    animation-duration:
+    15s;
+
+    animation-delay:
+    2s;
+
+}
+
+
+.leaf:nth-child(3) {
+
+    left:
+    25%;
+
+    animation-duration:
+    12s;
+
+    animation-delay:
+    5s;
+
+}
+
+
+.leaf:nth-child(4) {
+
+    left:
+    38%;
+
+    animation-duration:
+    17s;
+
+    animation-delay:
+    1s;
+
+}
+
+
+.leaf:nth-child(5) {
+
+    left:
+    50%;
+
+    animation-duration:
+    13s;
+
+    animation-delay:
+    4s;
+
+}
+
+
+.leaf:nth-child(6) {
+
+    left:
+    62%;
+
+    animation-duration:
+    18s;
+
+    animation-delay:
+    3s;
+
+}
+
+
+.leaf:nth-child(7) {
+
+    left:
+    72%;
+
+    animation-duration:
+    14s;
+
+    animation-delay:
+    6s;
+
+}
+
+
+.leaf:nth-child(8) {
+
+    left:
+    82%;
+
+    animation-duration:
+    16s;
+
+    animation-delay:
+    2s;
+
+}
+
+
+.leaf:nth-child(9) {
+
+    left:
+    90%;
+
+    animation-duration:
+    12s;
+
+    animation-delay:
+    7s;
+
+}
+
+
+.leaf:nth-child(10) {
+
+    left:
+    45%;
+
+    animation-duration:
+    19s;
+
+    animation-delay:
+    8s;
+
+}
+
+
+
+@keyframes fall {
+
+
+    0% {
 
         transform:
-        translateY(85vh)
-        translateX(30px)
-        rotate(540deg);
+
+        translateY(-100px)
+        rotate(0deg);
 
     }
 
@@ -149,10 +304,241 @@
     100% {
 
         transform:
-        translateY(120vh)
-        translateX(-20px)
+
+        translateY(110vh)
         rotate(720deg);
 
     }
+
+}
+
+
+
+/* 📜 Main paper/card */
+
+.container {
+
+
+    position:
+    relative;
+
+
+    z-index:
+    2;
+
+
+    width:
+    85%;
+
+
+    max-width:
+    430px;
+
+
+    padding:
+    35px 25px;
+
+
+    background:
+
+    rgba(255,240,210,0.94);
+
+
+    border-radius:
+    25px;
+
+
+    border:
+
+    3px solid
+    #d49a55;
+
+
+    box-shadow:
+
+    0 20px 45px
+    rgba(50,20,5,0.5);
+
+
+    text-align:
+    center;
+
+}
+
+
+
+/* 🍁 Headings */
+
+h1 {
+
+    font-family:
+
+    'Cormorant Garamond',
+    serif;
+
+
+    font-size:
+
+    clamp(
+        2.5rem,
+        8vw,
+        4rem
+    );
+
+
+    color:
+
+    #6b3520;
+
+
+    text-shadow:
+
+    1px 2px 3px
+    rgba(0,0,0,0.15);
+
+}
+
+
+
+/* ✉️ Text */
+
+p {
+
+    color:
+
+    #5c3422;
+
+
+    font-size:
+
+    1.15rem;
+
+
+    line-height:
+
+    1.7;
+
+}
+
+
+
+/* 🕯️ Buttons */
+
+.button {
+
+
+    display:
+    block;
+
+
+    margin:
+    20px auto;
+
+
+    padding:
+    17px 25px;
+
+
+    background:
+
+
+    linear-gradient(
+
+        135deg,
+
+        #8f4b27,
+
+        #5b2d19
+
+    );
+
+
+    color:
+
+    #fff2d5;
+
+
+    text-decoration:
+
+    none;
+
+
+    border-radius:
+
+    30px;
+
+
+    font-size:
+
+    1.15rem;
+
+
+    font-weight:
+
+    600;
+
+
+    box-shadow:
+
+    0 8px 15px
+    rgba(40,15,5,0.4);
+
+
+    transition:
+    0.3s;
+
+}
+
+
+
+.button:hover {
+
+    transform:
+    scale(1.05);
+
+}
+
+
+
+/* 📖 Scrapbook cards for future pages */
+
+.card {
+
+
+    background:
+
+    #fff0d2;
+
+
+    color:
+
+    #5c2d19;
+
+
+    padding:
+
+    20px;
+
+
+    margin:
+
+    20px 0;
+
+
+    border-radius:
+
+    18px;
+
+
+    box-shadow:
+
+    0 8px 20px
+    rgba(50,20,5,0.25);
+
+
+    border-left:
+
+    8px solid
+    #c7773d;
 
 }
