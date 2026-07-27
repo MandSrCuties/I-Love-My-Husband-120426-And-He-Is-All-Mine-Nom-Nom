@@ -1,125 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-
-    <!-- Phone/iPhone display setting -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta name="robots" content="noindex, nofollow">
-
-    <title>For You ❤️</title>
+    <title>For My Husband ❤️</title>
 
     <style>
-        * {
-            box-sizing: border-box;
-        }
-
         body {
             margin: 0;
-            min-height: 100vh;
-            background: linear-gradient(#ffdce9, #fff7fb);
-            font-family: Arial, sans-serif;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
-            color: #444;
+            background: linear-gradient(to bottom, #f6d6a8, #d97a3c, #8b4b2a);
+            font-family: Georgia, serif;
+            overflow: hidden;
         }
 
-        .phone-screen {
-            width: 100%;
-            max-width: 420px;
-            min-height: 90vh;
-            background: white;
-            border-radius: 30px;
-            padding: 35px 25px;
+        .container {
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-        }
-
-        .heart {
-            font-size: 70px;
-            animation: float 2s ease-in-out infinite;
+            padding: 20px;
         }
 
         h1 {
-            color: #d63384;
-            font-size: 36px;
-            margin: 20px 0;
-        }
-
-        p {
-            font-size: 18px;
-            line-height: 1.6;
+            color: #fff8f0;
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
         }
 
         .button {
             display: inline-block;
-            margin-top: 25px;
-            background: #d63384;
+            padding: 15px 35px;
+            background-color: #8b5a2b;
             color: white;
-            padding: 15px 30px;
-            border-radius: 50px;
             text-decoration: none;
-            font-size: 18px;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            transition: 0.3s;
         }
 
-        @keyframes float {
-            0% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-12px);
-            }
-
-            100% {
-                transform: translateY(0);
-            }
-        }
-
-        /* Extra adjustment for smaller phones */
-        @media (max-width: 380px) {
-            h1 {
-                font-size: 30px;
-            }
-
-            p {
-                font-size: 16px;
-            }
-
-            .heart {
-                font-size: 55px;
-            }
+        .button:hover {
+            background-color: #a86b37;
+            transform: scale(1.05);
         }
     </style>
-
 </head>
-
 <body>
 
-    <div class="phone-screen">
+    <div class="container">
+        <h1>My Husband Is The Best ❤️</h1>
 
-        <div class="heart">❤️</div>
-
-        <h1>Hi you</h1>
-
-        <p>
-            You found the secret page.
-        </p>
-
-        <p>
-            This little website was made just for you.
-        </p>
-
-        <a class="button" href="#">
-            Open ❤️
-        </a>
-
+        <a href="page2.html" class="button">Continue 🍂</a>
     </div>
 
 </body>
-
 </html>
